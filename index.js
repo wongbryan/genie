@@ -32,7 +32,7 @@ app.post('/display', async (req, res) => {
     res.status(400).send("Image required as part of request body.");
   }
 
-	const child = spawn('python3', ['/Users/bryanwong/Desktop/dev/genie/dummy.py']);
+	const child = spawn('python3', ['dummy.py']);
 	child.on('exit', (code, signal) => {
 		const status = code ? 200 : 400;
 		const components = componentTypes.sort(()=>{ return .5 > Math.random() });
