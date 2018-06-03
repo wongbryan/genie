@@ -25,6 +25,13 @@ app.use(function(req, res, next) {
 });
 
 app.post('/display', async (req, res) => {
+  
+  /* req should include base64 image */
+  const image_B64 = req.body.image;
+  if (!image_B64) {
+    res.status(400).send("Image required as part of request body.");
+  }
+
 	const child = spawn('python3', ['dummy.py']);
 	child.on('exit', (code, signal) => {
 		const status = code ? 200 : 400;
