@@ -1,0 +1,40 @@
+item {
+  id: 1
+  name: 'heading1'
+}
+
+item {
+  id: 2
+  name: 'heading2'
+}
+
+item {
+  id: 3
+  name: 'heading3'
+}
+
+item {
+  id: 4
+  name: 'paragraph'
+}
+
+item {
+  id: 5
+  name: 'search bar'
+}
+
+item {
+  id: 6
+  name: 'picture'
+}
+
+item {
+  id: 7
+  name: 'inline stepper bar'
+}
+
+item {
+  id: 8
+  name: 'button'
+}
+
