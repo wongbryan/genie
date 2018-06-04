@@ -5,7 +5,7 @@ const { spawn } = require('child_process')
 const app = express()
 
 
-const componentTypes = [  
+const componentTypes = [
   'Button',
   'Image',
   'h1',
@@ -18,6 +18,9 @@ const componentTypes = [
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json({ limit: '1000mb'}))
+app.use(bodyParser.urlencoded({limit: '1000mb', extended: true}));
+
 
 /* cross origin */
 app.use(function(req, res, next) {
@@ -69,9 +72,9 @@ function deleteImage(path) {
 }
 
 app.post('/display', async (req, res) => {
-  
+
   /* req should include base64 image */
-  let imageB64 = req.body.image;
+  let imageB64 = req.body.file;
   if (!imageB64) {
     res.status(400).send("Image required as part of request body.");
   }
@@ -92,7 +95,7 @@ app.post('/display', async (req, res) => {
 
   const path = response.path;
 
-	const child = spawn('python3', ['dummy.py']);
+	const child = spawn('python3', ['server_scripts/putting_it_together.py', path]);
 	child.on('exit', (code, signal) => {
 		const status = code ? 200 : 400;
 		const components = componentTypes.sort(()=>{ return .5 > Math.random() });
@@ -103,7 +106,7 @@ app.post('/display', async (req, res) => {
 
     /* delete image */
     deleteImage(path);
-    
+
     res.status(status).send(payload);
   });
 });
