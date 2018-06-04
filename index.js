@@ -1,7 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const fs = require('fs');
 const { spawn } = require('child_process')
 const app = express()
+
+
 const componentTypes = [  
   'Button',
   'Image',
@@ -24,13 +27,70 @@ app.use(function(req, res, next) {
     next();
 });
 
+/* GLOBAL VARS */
+let imageBuffer = new Array(1000).fill(false);
+
+// convert b64 string to './image.png';
+async function convertB64(b64String, ext) {
+  return new Promise((resolve, reject) => {
+    let imageNumber = -1;
+    for (let i = 0; i < imageBuffer.length; i += 1) {
+      if (!imageBuffer[i]) {
+        imageBuffer[i] = true;
+        imageNumber = i;
+        break;
+      }
+    }
+
+    let base64Image = b64String.split(';base64,').pop();
+    fs.writeFile(`image_${imageNumber}.${ext}`, base64Image, {encoding: 'base64'}, function(err) {
+      if (err) {
+        reject({err: 'Unable to save image'});
+      }
+      resolve({message: 'File created', path: `image_${imageNumber}.${ext}`});
+    });
+  })
+}
+
+function deleteImage(path) {
+  fs.unlink(path, (err) => {
+    if (err) {
+      throw err;
+      return {err: err};
+    } else {
+      const startPos = path.indexOf('_') + 1;
+      const endPos = path.indexOf('.',startPos);
+      const imageNumber = path.substring(startPos,endPos);
+
+      imageBuffer[imageNumber] = false;
+      return {message: `${path} deleted`}
+    }
+  });
+}
+
 app.post('/display', async (req, res) => {
   
   /* req should include base64 image */
-  const image_B64 = req.body.image;
-  if (!image_B64) {
+  let imageB64 = req.body.image;
+  if (!imageB64) {
     res.status(400).send("Image required as part of request body.");
   }
+
+  /* get extension of file */
+  const startPos = imageB64.indexOf('/') + 1;
+  const endPos = imageB64.indexOf(';',startPos);
+  const ext = imageB64.substring(startPos,endPos);
+
+  /* save B64 string to image */
+  const response = await convertB64(imageB64, ext);
+
+  console.log(response);
+
+  if (response.err) {
+    res.status(500).send(response);
+  }
+
+  const path = response.path;
 
 	const child = spawn('python3', ['dummy.py']);
 	child.on('exit', (code, signal) => {
@@ -39,9 +99,13 @@ app.post('/display', async (req, res) => {
 		const payload = {
 			status: status,
 			components: components.slice( Math.floor(componentTypes.length * Math.random()))
-		};
-		res.status(status).send(payload);
-	});
-})
+    };
+
+    /* delete image */
+    deleteImage(path);
+    
+    res.status(status).send(payload);
+  });
+});
 
 app.listen(3001);
