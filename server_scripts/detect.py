@@ -19,7 +19,7 @@ import sys
 import tarfile
 import tensorflow as tf
 import zipfile
-#import preprocess as pre
+import preprocess as pre
 
 from collections import defaultdict
 from io import StringIO
@@ -40,12 +40,12 @@ from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_util
 
 
-# # Model preparation 
+# # Model preparation
 
 
-# 
-# Any model exported using the `export_inference_graph.py` tool can be loaded here simply by changing `PATH_TO_CKPT` to point to a new .pb file.  
-# 
+#
+# Any model exported using the `export_inference_graph.py` tool can be loaded here simply by changing `PATH_TO_CKPT` to point to a new .pb file.
+#
 
 # What model to download.
 """
@@ -78,14 +78,14 @@ def load_graph(PATH_TO_CKPT):
   detection_graph = tf.Graph()
   with detection_graph.as_default():
     od_graph_def = tf.GraphDef()
-    
+
     with tf.gfile.GFile(PATH_TO_CKPT, 'rb') as fid:
       serialized_graph = fid.read()
       #text_format.Merge(serialized_graph, od_graph_def)
       od_graph_def.ParseFromString(serialized_graph)
       tf.import_graph_def(od_graph_def, name='')
   return detection_graph
-  
+
 
 # ## Loading label map
 # Label maps map indices to category names, so that when our convolution network predicts `5`, we know that this corresponds to `airplane`.  Here we use internal utility functions, but anything that returns a dictionary mapping integers to appropriate string labels would be fine
@@ -205,7 +205,6 @@ def get_labels(image_path,
                detection_graph=None,
                category_index=None,
                should_preprocess=False):
-  #TODO: Include preprocessing
 
   if detection_graph is None:
     detection_graph = load_graph(PATH_TO_CKPT)
@@ -213,13 +212,18 @@ def get_labels(image_path,
     category_index = get_label_map(PATH_TO_LABELS, NUM_CLASSES)
 
   image = Image.open(image_path)
+
   # the array based representation of the image will be used later in order to prepare the
   # result image with boxes and labels on it.
   image_np = load_image_into_numpy_array(image)
+
+  # preprocess image
+  preprocessed_image = pre.processImg(image_np)
+
   # Expand dimensions since the model expects images to have shape: [1, None, None, 3]
-  image_np_expanded = np.expand_dims(image_np, axis=0)
+  image_np_expanded = np.expand_dims(preprocessed_image, axis=0)
   # Actual detection.
-  output_dict = run_inference_for_single_image(image_np, detection_graph)
+  output_dict = run_inference_for_single_image(preprocessed_image, detection_graph)
 
   labels = get_labels_from_output_dict(output_dict, category_index, min_threshold)
   """# Visualization of the results of a detection.
@@ -237,11 +241,7 @@ def get_labels(image_path,
   plt.imshow(image_np)"""
   return labels
 
-  
+
 
 
 # In[47]:
-
-
-
-

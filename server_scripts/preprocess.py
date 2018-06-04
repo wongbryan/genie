@@ -14,8 +14,9 @@ def extension(picname):
     ext = picname[ind + 1 : ]
     return ext
 
-def processImg(img):        
-    resized = cv2.resize(img, (720,720))
+def processImg(img):
+    grayed = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    resized = cv2.resize(grayed, (720,720))
     blurred = cv2.medianBlur(resized, 5)
     threshed = cv2.adaptiveThreshold(blurred,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,int(len(img)/20)*2-1,11)
     backtorgb = cv2.cvtColor(threshed,cv2.COLOR_GRAY2BGR)
@@ -34,13 +35,13 @@ def preprocess(path, path_to_save):
         ind = pic_name.index('.')
         cv2.imwrite('{}/{}.png'.format(path_to_save,pic_name[:ind]), threshed)
 
-        
+
 def preprocessBlob(blob):
     img = base64.b64decode(blob)
-    grayed = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    #grayed = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     threshed = processImg(greyed)
     return threshed
-        
+
 if(__name__ == '__main__'):
     path = sys.argv[1]
     path_to_save = sys.argv[2]

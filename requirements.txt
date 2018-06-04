@@ -2,6 +2,7 @@ We should already have:
 python3 (3.4+, we used 3.6.5)
 pip3 (probably any version, we used 10.0.1)
 wget
+git lfs
 
 virtualenv (16.0.0):
 $ pip3 install virtualenv
@@ -36,8 +37,8 @@ $ echo "/Users/henry/models/research" > tf_research.pth
 $ echo "/Users/henry/models/research/slim" > tf_research_slim.pth
 $ mv tf_research.pth tf_research_slim.pth ~/genie/genie_venv/lib/python3.6/site-packages/
 
-Python-tk
-
+opencv (3.4.1):
+python3 -m pip install opencv-python
 
 optional:
-cocoapi
+cocoapi, Python-tk
