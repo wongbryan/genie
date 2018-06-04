@@ -42,7 +42,7 @@ function deleteImage(path) {
   });
 }
 
-const getStarterFiles = (path, target, configStr, res) => { //creates a zip of starter files, download to res
+const getStarterFiles = (path, target, configStr) => { //creates a zip of starter files, download to res
   return new Promise((resolve, reject) => {
     const archive = archiver('zip', {
       zlib: { level: 9 }
@@ -51,7 +51,6 @@ const getStarterFiles = (path, target, configStr, res) => { //creates a zip of s
 
     output.on('close', function() {
         console.log('Archive wrote %d bytes', archive.pointer());
-        // res.attachment();
         resolve({
           err: false,
           status: 200

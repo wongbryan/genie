@@ -71,18 +71,13 @@ app.post('/download', async (req, res, next) => {
     const target = __dirname + '/StarterFiles.zip';
     const textChunk = "['h1', 'h1']";
 
-    // res.writeHead(200, {
-    //     // 'Content-Type': 'application/zip',
-    //     'Content-Type': 'application/x-download',
-    //     'Content-Disposition': 'attachment; filename=Starter Files.zip'
-    // });
-
-    const data = await getStarterFiles(starterDir, target, textChunk, res);
+    const data = await getStarterFiles(starterDir, target, textChunk);
 
     if(data.err){
       throw new Error(data.err);
     } else{
-      res.download(__dirname + '/StarterFiles.zip');
+      res.download(__dirname + '/StarterFiles.zip'); //writes headers automatically
+      // res.download(__dirname + '/text.txt');
     }
 })
 
