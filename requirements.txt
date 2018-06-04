@@ -1,0 +1,43 @@
+We should already have:
+python3 (3.4+, we used 3.6.5)
+pip3 (probably any version, we used 10.0.1)
+wget
+
+virtualenv (16.0.0):
+$ pip3 install virtualenv
+$ virtualenv -p /usr/local/bin/python3 genie_venv
+
+start virtualenv:
+$ source genie_venv/bin/activate
+
+tensorflow (cpu, 1.8.0):
+$ pip3 install --upgrade https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.8.0-py3-none-any.whl
+
+tensorflow dependencies:
+
+Cython, lxml, Jupyter Notebook, Matplotlib:
+$ pip3 install Cython lxml jupyter matplotlib
+
+Pillow (5.0.0):
+$ pip3 install 'pillow!=5.1.0'
+
+Protobuf (3.5.1):
+$ mkdir protoc_3.5.1
+$ cd protoc_3.5.1
+$ wget https://github.com/google/protobuf/releases/download/v3.5.1/protoc-3.5.1-osx-x86_64.zip
+$ chmod 775 protoc-3.5.1-osx-x86_64.zip
+$ unzip protoc-3.5.1-osx-x86_64.zip
+$ cd ~/models/research
+$ ~/genie/protoc_3.5.1/bin/protoc object_detection/protos/*.proto --python_out=.
+
+
+tf Slim (add libraries to PYTHONPATH):
+$ echo "/Users/henry/models/research" > tf_research.pth
+$ echo "/Users/henry/models/research/slim" > tf_research_slim.pth
+$ mv tf_research.pth tf_research_slim.pth ~/genie/genie_venv/lib/python3.6/site-packages/
+
+Python-tk
+
+
+optional:
+cocoapi
