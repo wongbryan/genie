@@ -1,7 +1,7 @@
 import sys
 
 def main():
-    print("hello world!")
+    print("['h1', 'h1']")
     sys.exit(1)
 
 

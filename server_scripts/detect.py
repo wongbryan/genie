@@ -211,12 +211,14 @@ def get_labels(image_path,
   if category_index is None:
     category_index = get_label_map(PATH_TO_LABELS, NUM_CLASSES)
 
+    print(image_path)
   image = Image.open(image_path)
 
   # the array based representation of the image will be used later in order to prepare the
   # result image with boxes and labels on it.
+  print('yuh1')
   image_np = load_image_into_numpy_array(image)
-
+  print('yuh2')
   # preprocess image
   preprocessed_image = pre.processImg(image_np)
 
