@@ -5,12 +5,8 @@ const { spawn } = require('child_process')
 const app = express()
 const { convertB64, deleteImage, getStarterFiles } = require('./util.js')
 
-app.use(bodyParser.json({ limit: '100000mb'}))
-app.use(bodyParser.urlencoded({
-  limit: '5000mb',
-  extended: true,
-  parameterLimit:50000000
-}));
+app.use(bodyParser.json({ limit: '50mb'}))
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 /* cross origin */
 app.use(function(req, res, next) {
