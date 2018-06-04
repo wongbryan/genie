@@ -1,40 +1,39 @@
 item {
   id: 1
-  name: 'heading1'
+  name: 'h1'
 }
 
 item {
   id: 2
-  name: 'heading2'
+  name: 'h2'
 }
 
 item {
   id: 3
-  name: 'heading3'
+  name: 'h3'
 }
 
 item {
   id: 4
-  name: 'paragraph'
+  name: 'Paragraph'
 }
 
 item {
   id: 5
-  name: 'search bar'
+  name: 'SearchBar'
 }
 
 item {
   id: 6
-  name: 'picture'
+  name: 'Image'
 }
 
 item {
   id: 7
-  name: 'inline stepper bar'
+  name: 'InlineStepper'
 }
 
 item {
   id: 8
-  name: 'button'
+  name: 'ButtonBar'
 }
-

@@ -16,11 +16,12 @@ const componentTypes = [
   'InlineStepper'
 ]
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json({ limit: '1000mb'}))
-app.use(bodyParser.urlencoded({limit: '1000mb', extended: true}));
-
+app.use(bodyParser.json({ limit: '100000mb'}))
+app.use(bodyParser.urlencoded({
+  limit: '5000mb',
+  extended: true,
+  parameterLimit:50000000
+}));
 
 /* cross origin */
 app.use(function(req, res, next) {
@@ -87,8 +88,6 @@ app.post('/display', async (req, res) => {
   /* save B64 string to image */
   const response = await convertB64(imageB64, ext);
 
-  console.log(response);
-
   if (response.err) {
     res.status(500).send(response);
   }
@@ -96,19 +95,28 @@ app.post('/display', async (req, res) => {
   const path = response.path;
 
 	const child = spawn('python3', ['server_scripts/putting_it_together.py', path]);
-	child.on('exit', (code, signal) => {
-		const status = code ? 200 : 400;
-		const components = componentTypes.sort(()=>{ return .5 > Math.random() });
-		const payload = {
-			status: status,
-			components: components.slice( Math.floor(componentTypes.length * Math.random()))
-    };
 
-    /* delete image */
-    deleteImage(path);
+  let output = [];
+  let payload = {components: []};
+  child.stdout.on('data',function(chunk){
+      let textChunk = chunk.toString('utf8');// buffer to string
 
-    res.status(status).send(payload);
+      const sP = textChunk.indexOf('[') + 1;
+      const eP = textChunk.indexOf(']',sP);
+      let arr_str = textChunk.substring(sP,eP);
+
+      output = arr_str.replace(/'/g, '').split(', ');
+      payload['components'] = output;
+
+      console.log(payload);
+
+      /* delete image */
+      deleteImage(path);
+
+      /* send */
+      res.status(200).send(payload);
   });
+
 });
 
 app.listen(3001);
