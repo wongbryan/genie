@@ -72,6 +72,10 @@ function deleteImage(path) {
   });
 }
 
+app.get('/health', async(req, res) => {
+  res.status(200).send({message: 'yuh'});
+})
+
 app.post('/display', async (req, res) => {
 
   /* req should include base64 image */
