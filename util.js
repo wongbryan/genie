@@ -49,17 +49,16 @@ const getStarterFiles = (path, target, configStr, res) => { //creates a zip of s
     });
     const output = fs.createWriteStream(__dirname + '/StarterFiles.zip');
 
-    res.on('close', function() {
+    output.on('close', function() {
         console.log('Archive wrote %d bytes', archive.pointer());
-        // res.download(__dirname + '/StarterFiles.zip');
-        res.attachment();
+        // res.attachment();
         resolve({
           err: false,
           status: 200
         })
     });
 
-    res.on('end', function() {
+    output.on('end', function() {
       console.log('Data has been drained');
     });
 
@@ -73,7 +72,7 @@ const getStarterFiles = (path, target, configStr, res) => { //creates a zip of s
       }
     });
 
-    res.on('error', function(err) {
+    output.on('error', function(err) {
       reject({
         err: 'Error creating zip', 
         status: 400
@@ -89,8 +88,8 @@ const getStarterFiles = (path, target, configStr, res) => { //creates a zip of s
       console.log("Config file saved.");
     })
 
-    archive.pipe(res);
-    // archive.pipe(output);
+    // archive.pipe(res);
+    archive.pipe(output);
     
     archive.directory(path + '/', path);
     archive.finalize();
