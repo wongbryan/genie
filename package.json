@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/wongbryan/genie#readme",
   "dependencies": {
+    "archiver": "^2.1.1",
     "child-process": "^1.0.2",
     "express": "^4.16.3",
     "fs": "^0.0.1-security",

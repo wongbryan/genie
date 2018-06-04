@@ -1,20 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const fs = require('fs');
+const fs = require('fs')
 const { spawn } = require('child_process')
 const app = express()
-
-
-const componentTypes = [
-  'Button',
-  'Image',
-  'h1',
-  'h2',
-  'h3',
-  'SearchBar',
-  'Paragraph',
-  'InlineStepper'
-]
+const { convertB64, deleteImage, getStarterFiles } = require('./util.js')
 
 app.use(bodyParser.json({ limit: '100000mb'}))
 app.use(bodyParser.urlencoded({
@@ -30,47 +19,6 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     next();
 });
-
-/* GLOBAL VARS */
-let imageBuffer = new Array(1000).fill(false);
-
-// convert b64 string to './image.png';
-async function convertB64(b64String, ext) {
-  return new Promise((resolve, reject) => {
-    let imageNumber = -1;
-    for (let i = 0; i < imageBuffer.length; i += 1) {
-      if (!imageBuffer[i]) {
-        imageBuffer[i] = true;
-        imageNumber = i;
-        break;
-      }
-    }
-
-    let base64Image = b64String.split(';base64,').pop();
-    fs.writeFile(`image_${imageNumber}.${ext}`, base64Image, {encoding: 'base64'}, function(err) {
-      if (err) {
-        reject({err: 'Unable to save image'});
-      }
-      resolve({message: 'File created', path: `image_${imageNumber}.${ext}`});
-    });
-  })
-}
-
-function deleteImage(path) {
-  fs.unlink(path, (err) => {
-    if (err) {
-      throw err;
-      return {err: err};
-    } else {
-      const startPos = path.indexOf('_') + 1;
-      const endPos = path.indexOf('.',startPos);
-      const imageNumber = path.substring(startPos,endPos);
-
-      imageBuffer[imageNumber] = false;
-      return {message: `${path} deleted`}
-    }
-  });
-}
 
 app.post('/display', async (req, res) => {
 
@@ -94,7 +42,8 @@ app.post('/display', async (req, res) => {
 
   const path = response.path;
 
-	const child = spawn('python3', ['server_scripts/putting_it_together.py', path]);
+	// const child = spawn('python3', ['server_scripts/putting_it_together.py', path]);
+  const child = spawn('python3', ['dummy.py']);
 
   let output = [];
   let payload = {components: []};
@@ -107,16 +56,20 @@ app.post('/display', async (req, res) => {
 
       output = arr_str.replace(/'/g, '').split(', ');
       payload['components'] = output;
-
       console.log(payload);
 
       /* delete image */
       deleteImage(path);
 
+      const starterDir = 'Starter Files';
+      const target = __dirname + '/StarterFiles.zip';
+
+      getStarterFiles(starterDir, target, textChunk);
+
       /* send */
       res.status(200).send(payload);
   });
-
 });
+
 
 app.listen(3001);
