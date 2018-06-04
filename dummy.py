@@ -1,7 +1,7 @@
 import sys
 
 def main():
-    print("['h1', 'h1']")
+    print("['h1', 'Image', 'Paragraph']")
     sys.exit(1)
 
 

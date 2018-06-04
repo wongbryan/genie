@@ -52,7 +52,6 @@ app.post('/display', async (req, res) => {
 
       output = arr_str.replace(/'/g, '').split(', ');
       payload['components'] = output;
-      console.log(payload);
 
       /* delete image */
       deleteImage(path);
@@ -65,7 +64,9 @@ app.post('/display', async (req, res) => {
 app.post('/download', async (req, res, next) => {
     const starterDir = 'Starter Files';
     const target = __dirname + '/StarterFiles.zip';
-    const textChunk = "['h1', 'h1']";
+
+    let textChunk = req.body.components; //string of array of components
+    textChunk = '['.concat(textChunk).concat(']');
 
     const data = await getStarterFiles(starterDir, target, textChunk);
 
@@ -73,7 +74,6 @@ app.post('/download', async (req, res, next) => {
       throw new Error(data.err);
     } else{
       res.download(__dirname + '/StarterFiles.zip'); //writes headers automatically
-      // res.download(__dirname + '/text.txt');
     }
 })
 
