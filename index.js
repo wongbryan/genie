@@ -47,7 +47,7 @@ app.post('/display', async (req, res) => {
 
   let output = [];
   let payload = {components: []};
-  child.stdout.on('data',function(chunk){
+  child.stdout.on('data', async function(chunk){
       let textChunk = chunk.toString('utf8');// buffer to string
 
       const sP = textChunk.indexOf('[') + 1;
@@ -61,15 +61,28 @@ app.post('/display', async (req, res) => {
       /* delete image */
       deleteImage(path);
 
-      const starterDir = 'Starter Files';
-      const target = __dirname + '/StarterFiles.zip';
-
-      getStarterFiles(starterDir, target, textChunk);
-
       /* send */
       res.status(200).send(payload);
   });
 });
 
+app.post('/download', async (req, res, next) => {
+    const starterDir = 'Starter Files';
+    const target = __dirname + '/StarterFiles.zip';
+    const textChunk = "['h1', 'h1']";
+
+    res.writeHead(200, {
+        'Content-Type': 'application/zip',
+        'Content-disposition': 'attachment; filename=Starter Files.zip'
+    });
+
+    const data = await getStarterFiles(starterDir, target, textChunk, res);
+
+    if(data.err){
+      throw new Error(data.err);
+    } else{
+      res.status(data.status).send('OK').end();
+    }
+})
 
 app.listen(3001);

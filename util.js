@@ -42,42 +42,59 @@ function deleteImage(path) {
   });
 }
 
-const getStarterFiles = (path, target, configStr) => { //creates a zip of starter files
-  const output = fs.createWriteStream(target);
-  const archive = archiver('zip', {
-    zlib: { level: 9 }
-  });
+const getStarterFiles = (path, target, configStr, res) => { //creates a zip of starter files, download to res
+  return new Promise((resolve, reject) => {
+    const archive = archiver('zip', {
+      zlib: { level: 9 }
+    });
+    const output = fs.createWriteStream(__dirname + '/StarterFiles.zip');
 
-  output.on('close', function() {
-    console.log(archive.pointer() + ' total bytes');
-    console.log('archiver has been finalized and the output file descriptor has closed.');
-  });
+    res.on('close', function() {
+        console.log('Archive wrote %d bytes', archive.pointer());
+        // res.download(__dirname + '/StarterFiles.zip');
+        res.attachment();
+        resolve({
+          err: false,
+          status: 200
+        })
+    });
 
-  output.on('end', function() {
-    console.log('Data has been drained');
-  });
+    res.on('end', function() {
+      console.log('Data has been drained');
+    });
 
-  archive.on('warning', function(err) {
-    if (err.code === 'ENOENT') {
-    } else {
-      throw err;
-    }
-  });
+    archive.on('warning', function(err) {
+      if (err.code === 'ENOENT') {
+      } else {
+        reject({
+          err: 'Error creating zip',
+          status: 400,
+        });
+      }
+    });
 
-  archive.on('error', function(err) {
-    throw err;
-  });
+    res.on('error', function(err) {
+      reject({
+        err: 'Error creating zip', 
+        status: 400
+      });
+    });
 
-  const configPath = path + '/config.js';
-  fs.writeFile(configPath, configStr, (err) => {
-    if (err) throw err;
-    console.log("Config file saved.");
+    const configPath = path + '/config.js';
+    fs.writeFile(configPath, configStr, (err) => {
+      if (err) reject({
+        err: 'Error writing config file',
+        status: 400,
+      });
+      console.log("Config file saved.");
+    })
+
+    archive.pipe(res);
+    // archive.pipe(output);
+    
+    archive.directory(path + '/', path);
+    archive.finalize();
   })
-
-  archive.pipe(output);
-  
-  archive.directory(path + '/', path);
-  archive.finalize();
 }
 
 module.exports = {
