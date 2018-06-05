@@ -1,0 +1,33 @@
+@import "../../config/styles";
+
+.stepper {
+  display: flex;
+  width: calc(100% - 2*$padding-lr);
+  justify-content: space-between;
+  padding: 8px $padding-lr 8px $padding-lr;
+  height: 30px;
+  align-items: center;
+
+  h1 {
+    font-family: $font-primary-black;
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0;
+  }
+  .step-container {
+    display: flex;
+
+    .button-container {
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+  }
+}

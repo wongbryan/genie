@@ -1,0 +1,37 @@
+@import "../config/styles";
+
+body {
+	margin: 0;
+	font-family: $font-primary-black;
+	background-color: $background-color;
+}
+
+.page-container {
+  padding: 12vh;
+
+  .page {
+    height: 76vh;
+    width: 100%;
+  }
+}
+
+@media(max-width: 420px) {
+  .page-container {
+    padding: 2.5rem;
+  }
+}
+
+.flex-center-inside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@import '../components/Button/style.scss';
+@import '../components/SearchBar/style.scss';
+@import '../components/Card/style.scss';
+@import '../components/InlineStepper/style.scss';
+@import '../components/Image/style.scss';
+@import '../components/Paragraph/style.scss';
+@import '../components/Heading/style.scss';
+@import '../components/ButtonBar/style.scss';

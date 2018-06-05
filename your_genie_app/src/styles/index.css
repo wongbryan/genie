@@ -1,0 +1,400 @@
+@font-face {
+  font-family: 'Avenir Black';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Black.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Medium.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Light';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Light.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Charter';
+  src: url("../assets/fonts/charter/Charter.woff2") format("woff2"), url("../assets/fonts/charter/Charter.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+body {
+  margin: 0;
+  font-family: "Avenir Black";
+  background-color: #FCFCFF; }
+
+.page-container {
+  padding: 12vh; }
+  .page-container .page {
+    height: 76vh;
+    width: 100%; }
+
+@media (max-width: 420px) {
+  .page-container {
+    padding: 2.5rem; } }
+
+.flex-center-inside, .heading.center {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+@font-face {
+  font-family: 'Avenir Black';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Black.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Medium.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Light';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Light.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Charter';
+  src: url("../assets/fonts/charter/Charter.woff2") format("woff2"), url("../assets/fonts/charter/Charter.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+.btn {
+  color: white;
+  height: 2rem;
+  border-radius: 2px;
+  font-size: 12px;
+  padding: 0 20px 0 20px;
+  cursor: pointer;
+  font-family: "Avenir Medium";
+  margin: .2rem;
+  -webkit-transition: all 0.75s ease;
+  -moz-transition: all 0.75s ease;
+  -ms-transition: all 0.75s ease;
+  -o-transition: all 0.75s ease;
+  transition: all 0.75s ease; }
+  .btn-primary {
+    background-color: #8865EA;
+    border: 0.1rem solid #8865EA; }
+  .btn-secondary {
+    background-color: #E5DAF0;
+    border: 0.1rem solid #E5DAF0; }
+  .btn.rounded {
+    border-radius: 20px; }
+  .btn.large {
+    font-size: 1.2rem;
+    height: 3.2rem; }
+    .btn.large.rounded {
+      border-radius: 1.6rem; }
+  .btn.ghost, .btn.textOnly {
+    background: none;
+    color: #8865EA; }
+    .btn.ghost:hover, .btn.textOnly:hover, .btn.ghost:active, .btn.textOnly:active, .btn.ghost:focus, .btn.textOnly:focus {
+      outline: 0;
+      background-color: #FCFCFF;
+      -webkit-box-shadow: 1px 2px 4px #8865EA;
+      -moz-box-shadow: 1px 2px 4px #8865EA;
+      box-shadow: 1px 2px 4px #8865EA; }
+  .btn.textOnly {
+    border-width: 0px;
+    color: #020202; }
+    .btn.textOnly:hover, .btn.textOnly:active, .btn.textOnly:focus {
+      outline: 0;
+      background-color: #E5DAF0;
+      -webkit-box-shadow: 0px 0px 0px #8865EA;
+      -moz-box-shadow: 0px 0px 0px #8865EA;
+      box-shadow: 0px 0px 0px #8865EA; }
+  .btn:hover, .btn:active, .btn:focus {
+    outline: 0;
+    -webkit-box-shadow: 1px 1px 1px #8865EA;
+    -moz-box-shadow: 1px 1px 1px #8865EA;
+    box-shadow: 1px 1px 1px #8865EA; }
+  .btn .light {
+    font-family: "Avenir Light"; }
+
+@font-face {
+  font-family: 'Avenir Black';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Black.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Medium.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Light';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Light.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Charter';
+  src: url("../assets/fonts/charter/Charter.woff2") format("woff2"), url("../assets/fonts/charter/Charter.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+.search-container {
+  padding: 5px 20px 5px;
+  width: calc(100% - 2*$padding-lr); }
+  .search-container .search {
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px; }
+    .search-container .search .glass {
+      max-height: 13px;
+      max-width: 13px;
+      padding-left: 15px;
+      padding-right: 20px;
+      flex: 1; }
+    .search-container .search .search-text {
+      color: black;
+      border-width: 0px;
+      font-size: 13px;
+      font-family: "Avenir Medium";
+      flex: 10;
+      transform: translate(0, 8%); }
+      .search-container .search .search-text:focus {
+        outline: 0; }
+    .search-container .search .buffer {
+      flex: 2; }
+
+@font-face {
+  font-family: 'Avenir Black';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Black.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Medium.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Light';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Light.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Charter';
+  src: url("../assets/fonts/charter/Charter.woff2") format("woff2"), url("../assets/fonts/charter/Charter.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+.card {
+  box-shadow: 0px 0px 35px rgba(2, 2, 2, 0.18);
+  background: #FFFFFF;
+  width: 400px;
+  margin: 15px 15px 0 15px;
+  height: auto;
+  overflow: visible;
+  padding: 5px 0 5px 0; }
+  .card-small {
+    width: 300px; }
+  .card-medium {
+    width: 400px; }
+  .card-large {
+    width: 600px; }
+
+@font-face {
+  font-family: 'Avenir Black';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Black.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Medium.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Light';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Light.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Charter';
+  src: url("../assets/fonts/charter/Charter.woff2") format("woff2"), url("../assets/fonts/charter/Charter.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+.stepper {
+  display: flex;
+  width: calc(100% - 2*$padding-lr);
+  justify-content: space-between;
+  padding: 8px 20px 8px 20px;
+  height: 30px;
+  align-items: center; }
+  .stepper h1 {
+    font-family: "Avenir Black";
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0; }
+  .stepper .step-container {
+    display: flex; }
+    .stepper .step-container .button-container {
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      margin-left: 10px; }
+      .stepper .step-container .button-container img {
+        width: 100%; }
+
+@font-face {
+  font-family: 'Avenir Black';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Black.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Medium.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Light';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Light.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Charter';
+  src: url("../assets/fonts/charter/Charter.woff2") format("woff2"), url("../assets/fonts/charter/Charter.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+.img-container {
+  width: 100%; }
+  .img-container img {
+    width: 100%;
+    display: block; }
+
+@font-face {
+  font-family: 'Avenir Black';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Black.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Medium.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Light';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Light.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Charter';
+  src: url("../assets/fonts/charter/Charter.woff2") format("woff2"), url("../assets/fonts/charter/Charter.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+.pg-container {
+  width: calc(100% - 2*$padding-lr);
+  padding: 0 20px 0 20px;
+  margin: 10px 0 10px 0;
+  text-align: left; }
+  .pg-container .pg {
+    font-size: 16px;
+    font-family: "Charter";
+    color: #5D5869;
+    margin: 0;
+    line-height: 120%; }
+
+@font-face {
+  font-family: 'Avenir Black';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Black.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Medium.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Light';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Light.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Charter';
+  src: url("../assets/fonts/charter/Charter.woff2") format("woff2"), url("../assets/fonts/charter/Charter.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+.heading {
+  padding: 0 20px 0 20px;
+  width: calc(100% - 2*$padding-lr);
+  height: auto;
+  margin: 12px 0 10px 0;
+  text-align: left; }
+  .heading h1, .heading h2, .heading h3 {
+    margin: 0; }
+  .heading1 {
+    font-size: 36px; }
+  .heading2 {
+    font-size: 28px; }
+  .heading3 {
+    font-size: 20px; }
+  .heading.center {
+    text-align: center; }
+
+@font-face {
+  font-family: 'Avenir Black';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Black.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Medium.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Avenir Light';
+  src: url("../assets/fonts/avenir/AvenirLTStd-Light.woff2") format("woff2"), url("../assets/fonts/avenir/AvenirLTStd-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Charter';
+  src: url("../assets/fonts/charter/Charter.woff2") format("woff2"), url("../assets/fonts/charter/Charter.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+.buttonBar {
+  width: calc(100%-2*$padding-lr);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px 0 20px;
+  margin: 8px 0 8px 0; }
+  .buttonBar h3 {
+    font-family: "Avenir Light";
+    color: #5D5869;
+    font-size: 17px; }

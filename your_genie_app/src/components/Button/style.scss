@@ -1,0 +1,71 @@
+@import "../../config/styles";
+
+.btn {
+	color: white;
+	height: 2rem;
+	border-radius: 2px;
+	font-size: 12px;
+	padding: 0 20px 0 20px;
+	cursor: pointer;
+	font-family: $font-primary-medium;
+	margin: .2rem;
+
+	&-primary {
+		background-color: $primary;
+		border: .1rem solid $primary;
+	}
+
+	&-secondary {
+		background-color: $secondary;
+		border: .1rem solid $secondary;
+	}
+
+	&.rounded {
+		border-radius: 20px;
+	}
+
+	&.large {
+		font-size: 1.2rem;
+		height: 3.2rem;
+
+		&.rounded{
+			border-radius: 1.6rem;
+		}
+	}
+
+	&.ghost {
+		background: none;
+		color: $primary;
+
+		@include hover-state {
+			outline: 0;
+			background-color: $background-color;
+
+			@include box-shadow(1px, 2px, 4px, $primary);
+		}
+	}
+
+	&.textOnly {
+		border-width: 0px;
+		color: $font-color-primary;
+		@extend .ghost;
+
+		@include hover-state {
+			outline: 0;
+			background-color: $secondary;
+
+			@include box-shadow(0px, 0px, 0px, $primary);
+		}
+	}
+
+	@include hover-state {
+		outline: 0;
+		@include box-shadow(1px, 1px, 1px, $primary);
+	}
+
+	@include transition (all, .75s, ease);
+
+	.light {
+		font-family: $font-primary-light;
+	}
+}
