@@ -1,3 +1,3 @@
-const Components = ['ButtonBar', 'Image', 'h2', 'Paragraph'];
+const Components = [h1,Image,Paragraph];
 
 export default Components;

@@ -78,7 +78,7 @@ const getStarterFiles = (path, target, configStr) => { //creates a zip of starte
       });
     });
 
-    const configPath = path + '/config.js';
+    const configPath = path + '/src/config/components.js';
     fs.writeFile(configPath, configStr, (err) => {
       if (err) reject({
         err: 'Error writing config file',

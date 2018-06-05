@@ -66,7 +66,10 @@ app.post('/download', async (req, res, next) => {
     const target = __dirname + '/your_genie_app.zip';
 
     let textChunk = req.body.components; //string of array of components
-    textChunk = '['.concat(textChunk).concat(']');
+    textChunk = 'const Components = ' + '[' + textChunk + '];\n\n'
+    + 'export default Components;';
+
+    console.log(textChunk);
 
     const data = await getStarterFiles(starterDir, target, textChunk);
 
