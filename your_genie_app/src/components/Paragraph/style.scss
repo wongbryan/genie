@@ -1,0 +1,16 @@
+@import '../../config/styles';
+
+.pg-container {
+  width: calc(100% - 2*$padding-lr);
+  padding: 0 $padding-lr 0 $padding-lr;
+  margin: 10px 0 10px 0;
+  text-align: left;
+
+  .pg {
+    font-size: 16px;
+    font-family: $font-secondary;
+    color: $font-color-secondary;
+    margin: 0;
+    line-height: 120%;
+  }
+}

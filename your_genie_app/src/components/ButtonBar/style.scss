@@ -1,0 +1,16 @@
+@import "../../config/styles";
+
+.buttonBar {
+  width: calc(100%-2*$padding-lr);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 $padding-lr 0 $padding-lr;
+  margin: 8px 0 8px 0;
+
+  h3 {
+    font-family: $font-primary-light;
+    color: $font-color-secondary;
+    font-size: 17px;
+  }
+}

@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'Avenir Black';
+  src: url('../assets/fonts/avenir/AvenirLTStd-Black.woff2') format('woff2'),
+    url('../assets/fonts/avenir/AvenirLTStd-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url('../assets/fonts/avenir/AvenirLTStd-Medium.woff2') format('woff2'),
+    url('../assets/fonts/avenir/AvenirLTStd-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Light';
+  src: url('../assets/fonts/avenir/AvenirLTStd-Light.woff2') format('woff2'),
+    url('../assets/fonts/avenir/AvenirLTStd-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Charter';
+  src: url('../assets/fonts/charter/Charter.woff2') format('woff2'),
+    url('../assets/fonts/charter/Charter.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+$primary: #8865EA;
+$secondary: #E5DAF0;
+$font-primary-black:  "Avenir Black";
+$font-primary-medium: "Avenir Medium";
+$font-primary-light: "Avenir Light";
+$font-secondary: "Charter";
+$font-color-primary: #020202;
+$font-color-secondary: #5D5869;
+$background-color: #FCFCFF;
+
+$padding-lr: 20px;
+
+@mixin hover-state {
+  &:hover, &:active, &:focus {
+    @content;
+  }
+}
+
+@mixin transition($what: all, $time: 0.2s, $how: ease-in-out) {
+  -webkit-transition: $what $time $how;
+  -moz-transition:    $what $time $how;
+  -ms-transition:     $what $time $how;
+  -o-transition:      $what $time $how;
+  transition:         $what $time $how;
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}

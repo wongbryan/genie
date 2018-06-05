@@ -1,0 +1,39 @@
+@import "../../config/styles";
+
+.search-container {
+  padding: 5px $padding-lr 5px ;
+  width: calc(100% - 2*$padding-lr);
+
+  .search {
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+
+    .glass {
+      max-height: 13px;
+      max-width: 13px;
+      padding-left: 15px;
+      padding-right: 20px;
+      flex: 1;
+    }
+
+    .search-text {
+      color: black;
+      border-width: 0px;
+      font-size: 13px;
+      font-family: $font-primary-medium;
+      flex: 10;
+      transform: translate(0, 8%);
+
+      &:focus {
+        outline: 0;
+      }
+    }
+
+    .buffer {
+      flex: 2;
+    }
+  }
+}
