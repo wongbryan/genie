@@ -47,7 +47,7 @@ const getStarterFiles = (path, target, configStr) => { //creates a zip of starte
     const archive = archiver('zip', {
       zlib: { level: 9 }
     });
-    const output = fs.createWriteStream(__dirname + '/StarterFiles.zip');
+    const output = fs.createWriteStream(target);
 
     output.on('close', function() {
         console.log('Archive wrote %d bytes', archive.pointer());
@@ -78,7 +78,7 @@ const getStarterFiles = (path, target, configStr) => { //creates a zip of starte
       });
     });
 
-    const configPath = path + '/config.js';
+    const configPath = path + '/src/config/components.js';
     fs.writeFile(configPath, configStr, (err) => {
       if (err) reject({
         err: 'Error writing config file',

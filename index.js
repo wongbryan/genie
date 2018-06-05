@@ -62,18 +62,23 @@ app.post('/display', async (req, res) => {
 });
 
 app.post('/download', async (req, res, next) => {
-    const starterDir = 'Starter Files';
-    const target = __dirname + '/StarterFiles.zip';
+    const starterDir = 'your_genie_app';
+    const target = __dirname + '/your_genie_app.zip';
 
     let textChunk = req.body.components; //string of array of components
-    textChunk = '['.concat(textChunk).concat(']');
+    textChunk = JSON.stringify(textChunk);
+    textChunk = 'const Components = ' + textChunk  + "\n\n"
+    + 'export default Components;';
+
+    console.log(textChunk);
 
     const data = await getStarterFiles(starterDir, target, textChunk);
 
     if(data.err){
       throw new Error(data.err);
     } else{
-      res.download(__dirname + '/StarterFiles.zip'); //writes headers automatically
+      res.download(__dirname + '/your_genie_app.zip'); //writes headers automatically
+      fs.unlink(starterDir + '/src/config/components.js');
     }
 })
 
