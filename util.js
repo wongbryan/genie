@@ -47,7 +47,7 @@ const getStarterFiles = (path, target, configStr) => { //creates a zip of starte
     const archive = archiver('zip', {
       zlib: { level: 9 }
     });
-    const output = fs.createWriteStream(__dirname + '/StarterFiles.zip');
+    const output = fs.createWriteStream(target);
 
     output.on('close', function() {
         console.log('Archive wrote %d bytes', archive.pointer());
