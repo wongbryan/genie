@@ -66,7 +66,8 @@ app.post('/download', async (req, res, next) => {
     const target = __dirname + '/your_genie_app.zip';
 
     let textChunk = req.body.components; //string of array of components
-    textChunk = 'const Components = ' + '[' + textChunk + '];\n\n'
+    textChunk = JSON.stringify(textChunk);
+    textChunk = 'const Components = ' + textChunk  + "\n\n"
     + 'export default Components;';
 
     console.log(textChunk);
@@ -77,6 +78,7 @@ app.post('/download', async (req, res, next) => {
       throw new Error(data.err);
     } else{
       res.download(__dirname + '/your_genie_app.zip'); //writes headers automatically
+      fs.unlink(starterDir + '/src/config/components.js');
     }
 })
 
